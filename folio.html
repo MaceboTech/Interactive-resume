@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Interactive Resume</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: "Georgia", serif;
+      margin: 0;
+      background: linear-gradient(135deg, #fdfbf9, #f8e9e9, #fdf6f0);
+      color: #2c2c2c;
+      line-height: 1.6;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    header {
+      background: linear-gradient(to right, #f8e9e9, #fdfbf9, #e8dad4);
+      color: #2c2c2c;
+      text-align: center;
+      padding: 4rem 1rem 2rem;
+      border-bottom: 3px solid #d8b4a0;
+      position: relative;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 3.5rem;
+      font-family: "Dancing Script", cursive;
+      color: #b5838d;
+      animation: slideIn 2s ease;
+    }
+
+    header p {
+      margin-top: 0.8rem;
+      font-size: 1.3rem;
+      font-style: italic;
+      color: #555;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(-40px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      background: #ffffffd9;
+      padding: 14px;
+      border-bottom: 1px solid #eee;
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      color: #2c2c2c;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s;
+      padding: 6px 10px;
+      border-radius: 5px;
+    }
+
+    nav a:hover {
+      color: white;
+      background: linear-gradient(to right, #d8b4a0, #b5838d);
+      box-shadow: 0px 3px 8px rgba(0,0,0,0.1);
+    }
+
+    section {
+      max-width: 900px;
+      margin: auto;
+      padding: 3rem 1.5rem;
+      animation: fadeUp 1.5s ease;
+    }
+
+    @keyframes fadeUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    h2 {
+      color: #2c2c2c;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      border-left: 6px solid #d8b4a0;
+      padding-left: 12px;
+      font-family: "Playfair Display", serif;
+    }
+
+    /* Profile Image */
+    .profile-pic {
+      width: 200px;
+      height: 150px;
+      border-radius: 50%;
+      margin: 15px auto;
+      display: block;
+      border: 4px solid #d8b4a0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+ #skills {
+    max-width: 1000px;
+    margin: 3rem auto;
+    padding: 2rem 1.5rem;
+    font-family: 'Georgia', serif;
+  }
+
+  #skills h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    border-left: 6px solid #d8b4a0;
+    padding-left: 12px;
+    color: #b5838d;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+
+  .skill-card {
+    background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+    padding: 18px;
+    border-radius: 18px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .skill-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.18);
+  }
+
+  .skill-card h3 {
+    margin-top: 0;
+    color: #fff;
+    font-size: 1.2rem;
+  }
+
+  .skill-card p {
+    margin: 10px 0 0;
+    color: #fff;
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+
+    .timeline {
+      border-left: 3px solid #d8b4a0;
+      margin: 20px 0;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .timeline div {
+      margin-bottom: 30px;
+      animation: fadeUp 1.5s ease;
+    }
+
+    .timeline h3 {
+      margin: 0;
+      font-size: 1.2rem;
+      font-family: "Playfair Display", serif;
+      color: #b5838d;
+    }
+
+    footer {
+      text-align: center;
+      background: linear-gradient(to right, #f8e9e9, #fdfbf9);
+      color: #2c2c2c;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      border-top: 2px solid #d8b4a0;
+      font-style: italic;
+    }
+
+    /* Button for Contact */
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      margin-top: 15px;
+      background: linear-gradient(to right, #d8b4a0, #b5838d);
+      color: white;
+      border-radius: 25px;
+      text-decoration: none;
+      transition: all 0.3s;
+      font-weight: bold;
+    }
+
+    .btn:hover {
+      box-shadow: 0px 5px 12px rgba(0,0,0,0.2);
+      transform: translateY(-3px);
+    }
+
+#experience {
+    max-width: 900px;
+    margin: 3rem auto;
+    padding: 2rem 1.5rem;
+    font-family: 'Georgia', serif;
+  }
+
+  #experience h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    border-left: 6px solid #d8b4a0;
+    padding-left: 12px;
+    color: #b5838d;
+  }
+
+  .timeline {
+    position: relative;
+    padding-left: 30px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(#d8b4a0, #b5838d);
+    border-radius: 3px;
+  }
+
+  .t-item {
+    position: relative;
+    margin-bottom: 30px;
+    padding-left: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .t-item::before {
+    content: '';
+    position: absolute;
+    left: -2px;
+    top: 6px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #fff;
+    border: 3px solid #d8b4a0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  }
+
+  .t-item:hover {
+    transform: translateX(5px);
+  }
+
+  .t-role {
+    margin: 0 0 5px;
+    font-family: 'Playfair Display', serif;
+    color: #b5838d;
+    font-size: 1.2rem;
+  }
+
+  .t-item p {
+    margin: 3px 0 0;
+    color: #333;
+    line-height: 1.5;
+  }
+
+  .t-item em {
+    color: #555;
+    font-style: italic;
+  }
+
+  #education {
+    max-width: 900px;
+    margin: 3rem auto;
+    padding: 2rem 1.5rem;
+    font-family: 'Georgia', serif;
+  }
+
+  #education h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    border-left: 6px solid #d8b4a0;
+    padding-left: 12px;
+    color: #b5838d;
+  }
+
+  .timeline {
+    position: relative;
+    padding-left: 30px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(#d8b4a0, #b5838d);
+    border-radius: 3px;
+  }
+
+  .edu-item {
+    position: relative;
+    margin-bottom: 30px;
+    padding-left: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .edu-item::before {
+    content: '';
+    position: absolute;
+    left: -2px;
+    top: 6px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #fff;
+    border: 3px solid #d8b4a0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  }
+
+  .edu-item:hover {
+    transform: translateX(5px);
+  }
+
+  .edu-degree {
+    margin: 0 0 5px;
+    font-family: 'Playfair Display', serif;
+    color: #b5838d;
+    font-size: 1.2rem;
+  }
+
+  .edu-item p {
+    margin: 3px 0 0;
+    color: #333;
+    line-height: 1.5;
+  }
+
+  .edu-item em {
+    color: #555;
+    font-style: italic;
+  }
+#contact {
+    max-width: 900px;
+    margin: 3rem auto;
+    padding: 2rem 1.5rem;
+    font-family: 'Georgia', serif;
+  }
+
+  #contact h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    border-left: 6px solid #d8b4a0;
+    padding-left: 12px;
+    color: #b5838d;
+  }
+
+  .contact-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+  }
+
+  .contact-card {
+    background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+    padding: 18px;
+    border-radius: 18px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+  }
+
+  .contact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.18);
+  }
+
+  .contact-card h3 {
+    margin-top: 0;
+    color: #fff;
+    font-size: 1.1rem;
+  }
+
+  .contact-card p, .contact-card a {
+    margin: 10px 0 0;
+    color: #fff;
+    font-size: 0.95rem;
+    text-decoration: none;
+  }
+
+  .contact-card a:hover {
+    text-decoration: underline;
+    color: #fff;
+  }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="photo.jpg" alt="Profile Picture" class="profile-pic">
+    <h1>Macebomdali Khanyile </h1>
+    <p>Aspiring Business Analyst | Skilled in SAP | Tech Enthusiast</p>
+  </header>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>I am a final-year Business Analysis student with a strong passion for technology, data, and digital transformation. I bring creativity, problem-solving, and a growth mindset into everything I do. With hands-on exposure to SAP solutions, data analysis, and system design, I aim to bridge the gap between business needs and IT innovation.
+
+Unique mix of technical skills + business insight + creativity.</p>
+  </section>
+
+<section id="skills">
+  <h2>Skills</h2>
+  <div class="skills-grid">
+    <!-- SAP Skills -->
+    <div class="skill-card">
+      <h3>💠 SAP</h3>
+      <p>Analytics Cloud • Business Data Cloud • ERP & Fiori Basics • Data Modeling • Visualization</p>
+    </div>
+
+    <!-- SQL Skills -->
+    <div class="skill-card">
+      <h3>📊 SQL</h3>
+      <p>Queries • Subqueries • Joins • Data Analysis</p>
+    </div>
+
+    <!-- Programming -->
+    <div class="skill-card">
+      <h3>💻 Programming</h3>
+      <p>Python (Beginner) • HTML • CSS</p>
+    </div>
+
+    <!-- Microsoft Office -->
+    <div class="skill-card">
+      <h3>🖥️ Microsoft Office</h3>
+      <p>Word • Excel • PowerPoint • Outlook</p>
+    </div>
+
+    <!-- Business Analysis -->
+    <div class="skill-card">
+      <h3>📌 Business Analysis</h3>
+      <p>Requirement Gathering • Documentation • Process Mapping • Workflow Analysis</p>
+    </div>
+
+    <!-- Project Management -->
+    <div class="skill-card">
+      <h3>🗂️ Project Management</h3>
+      <p>Agile • Waterfall</p>
+    </div>
+
+    <!-- Soft Skills -->
+    <div class="skill-card">
+      <h3>💬 Soft Skills</h3>
+      <p>Problem Solving • Critical Thinking • Communication • Teamwork • Creativity • Adaptability</p>
+    </div>
+
+    <!-- Languages -->
+    <div class="skill-card">
+      <h3>🌍 Languages</h3>
+      <p>English • isiZulu • Beginner Spanish</p>
+    </div>
+  </div>
+</section>
+
+
+  <section id="experience">
+  <h2>Experience</h2>
+  <div class="timeline">
+    <!-- Job 1 -->
+    <div class="t-item">
+      <h3 class="t-role">Receptionist – On the Wheels Driving School</h3>
+      <p><em>Nov 2022 – Feb 2023</em></p>
+      <p>Managed schedules, assisted clients, and handled administrative tasks with care and professionalism.</p>
+    </div>
+
+    <!-- Job 2 -->
+    <div class="t-item">
+      <h3 class="t-role">Promoter – Marketing Campaigns</h3>
+      <p><em> Jun 2023</em></p>
+      <p>Engaged directly with customers, promoted products effectively, and improved overall sales engagement.</p>
+    </div>
+
+    <!-- Job 3 -->
+    <div class="t-item">
+      <h3 class="t-role">DUT Volleyball Ladies Team Manager – Volleyball USSA 2025</h3>
+      <p><em>Ongoing</em></p>
+      <p>Managed a team of 34 staff members; coordinated logistics, transport, food, and accommodation; ensured smooth event operations.</p>
+    </div>
+
+    <!-- Job 4 -->
+    <div class="t-item">
+      <h3 class="t-role">Church Volunteer</h3>
+      <p><em>Ongoing</em></p>
+      <p>Assisted with event coordination, administration, and volunteer support to ensure seamless church operations.</p>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <h2>Education</h2>
+  <div class="timeline">
+    <!-- Education 1 -->
+    <div class="edu-item">
+      <h3 class="edu-degree"> Diploma in Business Analysis</h3>
+      <p><em>2022-2025</em></p>
+      <p>During my diploma studies, I have gained strong skills in requirements gathering, process mapping, and workflow analysis, alongside proficiency in SQL, data analysis, and SAP tools. I have also developed problem-solving, critical thinking, and communication skills, and gained practical knowledge of project management methodologies such as Agile and Waterfall, preparing me to analyze business needs and support data-driven decision-making effectively.</p>
+    </div>
+
+    <!-- Education 2 -->
+    <div class="edu-item">
+      <h3 class="edu-degree"> High School Certificate</h3>
+      <p><em>2021</em></p>
+      <p>During high school, I developed a strong foundation in IT and computer skills, learning HTML, Microsoft Word, Excel, PowerPoint, and Access. These skills have contributed to my overall proficiency in technology and digital tools, which I continue to build on in my diploma studies.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <div class="contact-cards">
+    <div class="contact-card">
+      <h3>📧 Email</h3>
+      <p>dalingwane03@gmail.com</p>
+    </div>
+
+    <div class="contact-card">
+      <h3>🔗 LinkedIn</h3>
+      <p><a href="www.linkedin.com/in/macebomdali-khanyile-198b04227" target="_blank">www.linkedin.com/in/macebomdali-khanyile-198b04227</a></p>
+    </div>
+
+    <div class="contact-card">
+      <h3>📱 Phone</h3>
+      <p>+27 67 013 6801</p>
+    </div>
+
+    <div class="contact-card">
+      <h3>🌍 Location</h3>
+      <p>Durban, South Africa</p>
+    </div>
+  </div>
+</section>
+
+  <footer>
+    <p>© 2025 Macebomdali | Crafted with Elegance 🌸✨</p>
+  </footer>
+
+</body>
+</html>
